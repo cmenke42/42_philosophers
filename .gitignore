@@ -51,9 +51,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-#other
-philo
-
 #do not push files wihtout extension but still include folders
 *
 !*/
