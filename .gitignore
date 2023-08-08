@@ -54,6 +54,6 @@ dkms.conf
 #do not push files wihtout extension but still include folders
 *
 !*/
-testfiles
 !*.c
 !*.h
+!Makefile
