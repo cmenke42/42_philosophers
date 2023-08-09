@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:56:15 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/09 20:44:36 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/09 21:47:57 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,17 @@ void	print_philo_numbers(t_philo_data *philo_data)
 int main(int argc, char **argv)
 {
 	t_philo_data	philo_data;
+	struct timeval	time;
 
 	memset((void *)&philo_data, 0, sizeof(t_philo_data));
+	memset((void *)&time, 0, sizeof(struct timeval));
 	if (!validate_and_get_input(argc, argv, &philo_data))
 		return (1);
 	print_philo_numbers(&philo_data);
+	gettimeofday(&time, NULL);
+	philo_data.start_of_simulation = time.tv_sec * 1000 + time.tv_usec / 1000;
+	printf("time_start_of_program:	%ld\n", philo_data.start_of_simulation);
+
+
 	return (0);
 }

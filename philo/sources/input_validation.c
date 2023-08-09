@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:16:40 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/09 20:50:32 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/09 21:00:20 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ bool validate_and_get_input(int argc, char **argv, t_philo_data *philo_data)
 {
 	if ((argc != 5 && argc <= 5) || (argc != 6 && argc > 6))
 	{
-		printf("Error: Incorrect number of arguments\n");
-		printf("The correct number of arguments is 4 or 5\n");
-		printf("The correct format is: ./philo number_of_philosophers time_to_die(ms) time_to_eat(ms) time_to_sleep(ms) [number_of_times_each_philosopher_must_eat]\n");
+		ft_putstr_fd("Error: Incorrect number of arguments\n", STDERR_FILENO);
+		ft_putstr_fd("The correct number of arguments is 4 or 5\n", STDERR_FILENO);
+		ft_putstr_fd("The correct format is: ./philo number_of_philosophers time_to_die(ms) time_to_eat(ms) time_to_sleep(ms) [number_of_times_each_philosopher_must_eat]\n", STDERR_FILENO);
 		return (false);
 	}
 	if (!save_input_to_philo_data(philo_data, argv))
