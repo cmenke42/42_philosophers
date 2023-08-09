@@ -6,7 +6,7 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 21:26:40 by cmenke            #+#    #+#              #
-#    Updated: 2023/08/09 00:15:39 by cmenke           ###   ########.fr        #
+#    Updated: 2023/08/09 20:42:48 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,21 @@ NAME := philo
 SRCDIR := sources
 
 SRCS := $(addprefix ${SRCDIR}/,main.c \
-								ft_atoi.c \
 								ft_isdigit.c \
-								input_validation.c)
+								ft_putstr_fd.c \
+								ft_putnbr_fd.c \
+								input_validation.c \
+								print_message.c)
 
 OBJS := ${SRCS:.c=.o}
 
 HEADER := includes/philo.h
 
 #Production flags
-#CFLAGS := -Wall -Werror -Wextra
+#CFLAGS := -Wall -Werror -Wextra -I includes
 
 #Development flags
-CFLAGS := -Wall -Wextra -g -O0 #-fsanitize=address
+CFLAGS := -Wall -Wextra -I includes -g -O0 #-fsanitize=address
 
 CC := cc
 

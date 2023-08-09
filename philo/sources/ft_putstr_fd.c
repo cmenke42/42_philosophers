@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/09 20:42:37 by cmenke           ###   ########.fr       */
+/*   Created: 2022/12/19 08:33:44 by cmenke            #+#    #+#             */
+/*   Updated: 2023/08/09 19:35:43 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include <pthread.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdbool.h>
-# include <string.h>
-# include <sys/time.h>
+//Outputs the string ’s’ to the given file descriptor.
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
 
-# include "structs.h"
-
-bool validate_and_get_input(int argc, char **argv, t_philo_data *philo_data);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-int		ft_isdigit(int c);
-
-#endif
+	i = 0;
+	while (s[i] != '\0')
+		write(fd, &s[i++], 1);
+}
