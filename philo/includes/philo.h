@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/10 15:28:36 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/10 20:46:19 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_isdigit(int c);
 
 //get_time.c
 long int	get_time_in_ms(void);
+int			get_timestamp_in_ms(long int start_time);
 
 //create_philos.c
 bool	create_philos(t_program_data *program_data);
@@ -48,4 +49,10 @@ void	*philo_life(void *philo);
 
 //helpers.c
 void	print_data_of_one_philo(t_one_philo *philo); //delete
+
+//waiting.c
+void	waiting_in_ms(int time, long int last_meal_time);
+
+//print_message.c
+void	print_message(t_one_philo *philo, char *message);
 #endif

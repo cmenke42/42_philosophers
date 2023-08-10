@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_time.c                                         :+:      :+:    :+:   */
+/*   waiting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 14:32:45 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/10 20:43:18 by cmenke           ###   ########.fr       */
+/*   Created: 2023/08/10 20:33:17 by cmenke            #+#    #+#             */
+/*   Updated: 2023/08/10 20:59:01 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long int	get_time_in_ms(void)
+//to reduce the delay of usleep
+void	waiting_in_ms(int time, long int last_meal_time)
 {
-	struct timeval	time;
+	long int start_time;
 
-	memset((void *)&time, 0, sizeof(struct timeval));
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	if (last_meal_time == 0)
+		start_time = get_time_in_ms();
+	else
+		start_time = last_meal_time;
+	while (get_time_in_ms() - start_time < time)
+		usleep((useconds_t)1000);
 }
-
-int	get_timestamp_in_ms(long int start_time)
-{
-	return ((int)(get_time_in_ms() - start_time));
-}
-

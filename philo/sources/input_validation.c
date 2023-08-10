@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:16:40 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/10 15:11:06 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/10 18:42:06 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ bool validate_and_get_input(int argc, char **argv, t_program_data *philo_data)
 		return (false);
 	if (argc == 5)
 		philo_data->num_times_to_eat = -1;
+	if (philo_data->num_philos < 1)
+		return (ft_putstr_fd("Error: There must be at least 1 philosopher\n", STDERR_FILENO), false);
 	return (true);
 }
 

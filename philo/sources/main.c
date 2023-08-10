@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:56:15 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/10 15:06:28 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/10 21:20:25 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,18 @@ void	print_philo_numbers(t_program_data *program_data)
 int main(int argc, char **argv)
 {
 	t_program_data	program_data;
-	struct timeval	time;
 
 	memset((void *)&program_data, 0, sizeof(t_program_data));
-	memset((void *)&time, 0, sizeof(struct timeval));
 	if (!validate_and_get_input(argc, argv, &program_data))
 		return (1);
 	print_philo_numbers(&program_data);
+	program_data.start_of_simulation = get_time_in_ms();
+	pthread_mutex_init(&program_data.time_of_last_meal_mutex, NULL); //error check?
+	pthread_mutex_init(&program_data.print_mutex, NULL); //error check?
 	if (!create_philos(&program_data))
 		return (1);
+	while (1)
+		;
+	usleep(1000000);
 	return (0);
 }
