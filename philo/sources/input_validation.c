@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 00:16:40 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/09 21:00:20 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/10 15:11:06 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 // argv[4] = time_to_sleep
 // (argv[5] = number_of_times_each_philosopher_must_eat) - optional argument
 
-static bool	save_input_to_philo_data(t_philo_data *philo_data, char **argv);
+static bool	save_input_to_philo_data(t_program_data *philo_data, char **argv);
 static bool	get_number(char *str, int *exit_code);
 
 
-bool validate_and_get_input(int argc, char **argv, t_philo_data *philo_data)
+bool validate_and_get_input(int argc, char **argv, t_program_data *philo_data)
 {
 	if ((argc != 5 && argc <= 5) || (argc != 6 && argc > 6))
 	{
@@ -38,7 +38,7 @@ bool validate_and_get_input(int argc, char **argv, t_philo_data *philo_data)
 	return (true);
 }
 
-static bool	save_input_to_philo_data(t_philo_data *philo_data, char **argv)
+static bool	save_input_to_philo_data(t_program_data *philo_data, char **argv)
 {
 	if (!get_number(argv[1], &philo_data->num_philos))
 		return (false);
@@ -71,7 +71,7 @@ static bool	get_number(char *str, int *number)
 		if (!ft_isdigit(*str))
 			return (ft_putstr_fd("Error: Only numbers are allowed\n", STDERR_FILENO), false);
 		temp = result * 10 + (*str++ - '0');
-		if (temp > 9223372036854775807)
+		if (temp > INT_MAX - 1)
 			return (ft_putstr_fd("Error: Number is too large\n", STDERR_FILENO), false);
 		result = temp;
 	}
