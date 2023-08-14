@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:32:45 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/10 20:43:18 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/13 21:57:31 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ long int	get_time_in_ms(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int	get_timestamp_in_ms(long int start_time)
+long int	get_timestamp_in_ms(long int start_time)
 {
-	return ((int)(get_time_in_ms() - start_time));
+	return ((get_time_in_ms() - start_time));
 }
-

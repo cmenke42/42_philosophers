@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/08 23:56:15 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/10 21:20:25 by cmenke           ###   ########.fr       */
+/*   Created: 2023/08/13 20:22:09 by cmenke            #+#    #+#             */
+/*   Updated: 2023/08/13 21:57:01 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,27 @@ void	print_philo_numbers(t_program_data *program_data)
 	printf("time_to_die:		%d\n", program_data->time_to_die);
 	printf("time_to_eat:		%d\n", program_data->time_to_eat);
 	printf("time_to_sleep:		%d\n", program_data->time_to_sleep);
-	printf("num_times_to_eat:	%d\n", program_data->num_times_to_eat);
+	printf("num_times_to_eat:	%d\n", program_data->meals_to_eat);
 	printf("\n");
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_program_data	program_data;
+	t_program_data	*program_data;
 
-	memset((void *)&program_data, 0, sizeof(t_program_data));
-	if (!validate_and_get_input(argc, argv, &program_data))
+	program_data = malloc(sizeof(t_program_data));
+	if (!program_data)
+		return (print_error(TYPE_ERROR, ERR_MALLOC), 1);
+	memset((void *)program_data, 0, sizeof(t_program_data));
+	if (!validate_and_get_input(argc, argv, program_data))
 		return (1);
-	print_philo_numbers(&program_data);
-	program_data.start_of_simulation = get_time_in_ms();
-	pthread_mutex_init(&program_data.time_of_last_meal_mutex, NULL); //error check?
-	pthread_mutex_init(&program_data.print_mutex, NULL); //error check?
-	if (!create_philos(&program_data))
+	if (program_data->meals_to_eat == 0)
+		return (0);
+	if (!create_mutexes(program_data))
 		return (1);
-	while (1)
-		;
-	usleep(1000000);
+	program_data->start_time = get_time_in_ms();
+	if (!create_philosophers(&program_data))
+		return (1);
+	print_philo_numbers(program_data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 21:26:40 by cmenke            #+#    #+#              #
-#    Updated: 2023/08/10 21:19:36 by cmenke           ###   ########.fr        #
+#    Updated: 2023/08/13 21:31:47 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,24 +15,27 @@ NAME := philo
 SRCDIR := sources
 
 SRCS := $(addprefix ${SRCDIR}/,main.c \
-								ft_isdigit.c \
-								ft_putstr_fd.c \
-								input_validation.c \
-								print_message.c \
-								create_philos.c \
-								get_time.c \
-								philo_life.c \
-								waiting.c)
+								print_error.c \
+								validate_and_get_input.c \
+								create_destroy_forks.c \
+								create_destroy_philosophers.c \
+								create_destroy_mutexes.c \
+								philosopher_life.c \
+								print_philo_state.c \
+								get_time.c)
 
 OBJS := ${SRCS:.c=.o}
 
-HEADER := includes/philo.h includes/structs.h 
+HEADER := $(addprefix includes/,philo.h \
+								messages.h \
+								structs.h \
+								colors.h)
 
 #Production flags
 #CFLAGS := -Wall -Werror -Wextra -I includes
 
 #Development flags
-CFLAGS := -Wall -Wextra -I includes -g -O0 #-fsanitize=address
+CFLAGS := -Wall -Wextra -I includes -g -O0 -fsanitize=thread #-fsanitize=address 
 
 CC := cc
 

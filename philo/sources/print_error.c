@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 08:33:44 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/09 19:35:43 by cmenke           ###   ########.fr       */
+/*   Created: 2023/08/12 18:29:04 by cmenke            #+#    #+#             */
+/*   Updated: 2023/08/13 20:28:27 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static void	ft_putstr_fd(char *s, int fd);
+
+void	print_error(char *type, char *message)
+{
+	ft_putstr_fd(type, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
+}
+
+
 //Outputs the string ’s’ to the given file descriptor.
-void	ft_putstr_fd(char *s, int fd)
+static void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 

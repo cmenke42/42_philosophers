@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   print_philo_state.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 15:17:35 by cmenke            #+#    #+#             */
-/*   Updated: 2022/12/30 12:48:18 by cmenke           ###   ########.fr       */
+/*   Created: 2023/08/13 21:25:02 by cmenke            #+#    #+#             */
+/*   Updated: 2023/08/13 21:54:22 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//checks if the character is (‘0’ - ‘9’).
-//returns non-zero for true and 0 for false.
-int	ft_isdigit(int c)
+#include "philo.h"
+
+void	print_philo_state(t_philo *philo_data, char *message)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	printf("%ld %d %s\n", get_timestamp_in_ms(philo_data->program_data->start_time),
+		philo_data->id + 1, message);
 }
