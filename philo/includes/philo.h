@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/13 22:00:23 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/15 22:13:49 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,8 @@ void	print_philo_state(t_philo *philo_data, char *message);
 //get_time.c
 long int	get_time_in_ms(void);
 long int	get_timestamp_in_ms(long int start_time);
+
+// philo_eat.c
+bool	philo_eat(t_philo *philo);
 
 #endif

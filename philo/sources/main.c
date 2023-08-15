@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:22:09 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/13 21:57:01 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/15 22:17:50 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	main(int argc, char **argv)
 	if (!create_mutexes(program_data))
 		return (1);
 	program_data->start_time = get_time_in_ms();
+	print_philo_numbers(program_data);
 	if (!create_philosophers(&program_data))
 		return (1);
-	print_philo_numbers(program_data);
 	return (0);
 }
