@@ -6,7 +6,7 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 21:26:40 by cmenke            #+#    #+#              #
-#    Updated: 2023/08/15 20:22:01 by cmenke           ###   ########.fr        #
+#    Updated: 2023/08/16 13:56:42 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS := main.c \
 		philosopher_life.c \
 		print_philo_state.c \
 		get_time.c \
-		philosopher_eat.c
+		philosopher_eat.c \
+		philosopher_end_of_simulation.c
 
 OBJS := $(patsubst %.c, ${OBJDIR}/%.o, ${SRCS})
 

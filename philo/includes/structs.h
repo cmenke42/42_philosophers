@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:49:59 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/15 22:15:02 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:05:25 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_program_data
 
 typedef struct s_philo
 {
-	int				id;
 	pthread_t		thread;
+	int				id;
 	int				meals_eaten;
 	long int		last_meal;
 	pthread_mutex_t	last_meal_mutex;

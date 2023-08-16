@@ -30,7 +30,8 @@ bool	create_philosophers(t_program_data **program_data_reference)
 		program_data->philos[i].last_meal = program_data->start_time;
 		program_data->philos[i].left_fork = &(program_data->forks[i]);
 		program_data->philos[i].right_fork = &(program_data->forks[(i + 1) % program_data->num_philos]);
-		if (pthread_create(&program_data->philos[i].thread, NULL, &philosopher_life, &(program_data->philos[i])))
+		pthread_mutex_init(&(program_data->philos[i].last_meal_mutex), NULL);// TODO: error check
+		if (pthread_create(&program_data->philos[i].thread, NULL, &philosopher_life, (void *)&(program_data->philos[i])))
 		{
 			print_error(ERR_PTHREAD_CREATE, "philosopher"); //cleanup?
 			return (false);

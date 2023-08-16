@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/15 22:13:49 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/16 13:56:34 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ long int	get_timestamp_in_ms(long int start_time);
 
 // philo_eat.c
 bool	philo_eat(t_philo *philo);
+
+//philosopher_end_of_simulation.c
+bool	is_end_of_simulation(t_program_data *program_data);
 
 #endif

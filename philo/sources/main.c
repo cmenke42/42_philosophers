@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:22:09 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/15 22:17:50 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:14:38 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ int	main(int argc, char **argv)
 	print_philo_numbers(program_data);
 	if (!create_philosophers(&program_data))
 		return (1);
+	is_end_of_simulation(program_data);
+	//clear up and wait for all to finish
+	while (1)
+		;
 	return (0);
 }
