@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 21:08:30 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/16 14:00:48 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/16 20:14:51 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*philosopher_life(void *philo)
 	t_philo	*philo_data;
 
 	philo_data = (t_philo *)philo;
+	// print_philo_state(philo_data, "hello", false);
 	while (1) //mutex!
 	{
 		pthread_mutex_lock(&philo_data->program_data->end_of_simulation_mutex);
@@ -30,7 +31,7 @@ void	*philosopher_life(void *philo)
 		pthread_mutex_unlock(&philo_data->program_data->end_of_simulation_mutex);
 		philo_eat(philo_data);
 		philo_sleep(philo_data);
-		print_philo_state(philo_data, MSG_THINK);
+		print_philo_state(philo_data, MSG_THINK, false);
 	}
 	return (NULL);
 }
@@ -38,7 +39,7 @@ void	*philosopher_life(void *philo)
 
 static void	philo_sleep(t_philo *philo_data)
 {
-	print_philo_state(philo_data, MSG_SLEEP);
+	print_philo_state(philo_data, MSG_SLEEP, false);
 	waiting_in_ms(philo_data->program_data->time_to_sleep, 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:22:09 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/16 14:14:38 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/16 20:11:40 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,23 @@ int	main(int argc, char **argv)
 	if (!program_data)
 		return (print_error(TYPE_ERROR, ERR_MALLOC), 1);
 	memset((void *)program_data, 0, sizeof(t_program_data));
+
 	if (!validate_and_get_input(argc, argv, program_data))
 		return (1);
+
 	if (program_data->meals_to_eat == 0)
 		return (0);
+
 	if (!create_mutexes(program_data))
 		return (1);
-	program_data->start_time = get_time_in_ms();
+
+		
 	print_philo_numbers(program_data);
-	if (!create_philosophers(&program_data))
+
+	if (!start_simulation(&program_data))
 		return (1);
+
+	// waiting_in_ms((program_data->time_to_die / 2) + (program_data->time_to_die / 2), 0);
 	is_end_of_simulation(program_data);
 	//clear up and wait for all to finish
 	while (1)

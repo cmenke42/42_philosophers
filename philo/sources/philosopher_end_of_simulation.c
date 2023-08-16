@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:51:25 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/16 14:13:40 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/16 20:22:16 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	is_end_of_simulation(t_program_data *program_data)
 	{
 		if (is_philo_dead(program_data))
 			return (true);
-		usleep(1000);
+		waiting_in_ms(1, 0);
 	}
 	return (false);
 }
@@ -30,8 +30,8 @@ static bool	is_philo_dead(t_program_data *program_data)
 	int			i;
 	long int	last_meal;
 
-	i = 0;
-	while(i < program_data->num_philos)
+	i = program_data->num_philos - 1;
+	while(i >= 0)
 	{
 		pthread_mutex_lock(&program_data->philos[i].last_meal_mutex);
 		last_meal = program_data->philos[i].last_meal;
@@ -39,12 +39,19 @@ static bool	is_philo_dead(t_program_data *program_data)
 		if (get_time_in_ms() - last_meal> program_data->time_to_die)
 		{
 			pthread_mutex_lock(&program_data->end_of_simulation_mutex);
-			program_data->end_of_simulation = true;
+			{
+				if (program_data->end_of_simulation)
+				{
+					pthread_mutex_unlock(&program_data->end_of_simulation_mutex);
+					return (true);
+				}
+				program_data->end_of_simulation = true;
+			}
 			pthread_mutex_unlock(&program_data->end_of_simulation_mutex);
-			print_philo_state(&program_data->philos[i], MSG_DIED);
+			print_philo_state(&program_data->philos[i], MSG_DIED, true);
 			return (true);
 		}
-		i++;
+		i--;
 	}
 	return (false);
 }
