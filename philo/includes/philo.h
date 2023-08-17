@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/16 20:09:03 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/17 16:34:48 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ bool	start_simulation(t_program_data **program_data_reference);
 // philosopher_life.c
 void	*philosopher_life(void *philo);
 void	waiting_in_ms(int time, long int last_meal_time);
+bool	is_end(t_program_data *program_data);
 
 
 //print_philo_state.c

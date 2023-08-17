@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 13:51:25 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/16 20:22:16 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/17 16:50:39 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ bool	is_end_of_simulation(t_program_data *program_data)
 	{
 		if (is_philo_dead(program_data))
 			return (true);
-		waiting_in_ms(1, 0);
+		usleep(900);
+		// waiting_in_ms(1, 0);
 	}
 	return (false);
 }

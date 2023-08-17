@@ -14,14 +14,18 @@
 
 static bool	prepare_philosopher_data(t_program_data **program_data_reference);
 static bool	launch_philosopher_threads(t_program_data **program_data_reference);
+static void set_last_meal_to_start_time(t_program_data *program_data);
 
 bool	start_simulation(t_program_data **program_data_reference)
 {
 	if (!prepare_philosopher_data(program_data_reference))
 		return (false);
-	(*program_data_reference)->start_time = get_time_in_ms();
+	pthread_mutex_lock(&(*program_data_reference)->start_simulation_mutex);
 	if (!launch_philosopher_threads(program_data_reference))
 		return (false);
+	(*program_data_reference)->start_time = get_time_in_ms();
+	set_last_meal_to_start_time(*program_data_reference);
+	pthread_mutex_unlock(&(*program_data_reference)->start_simulation_mutex);
 	return (true);
 }
 
@@ -57,7 +61,6 @@ static bool	launch_philosopher_threads(t_program_data **program_data_reference)
 	program_data = *program_data_reference;
 	while (i < program_data->num_philos)
 	{
-		program_data->philos[i].last_meal = program_data->start_time;
 		if (pthread_create(&program_data->philos[i].thread, NULL, &philosopher_life, (void *)&(program_data->philos[i])))
 		{
 			print_error(ERR_PTHREAD_CREATE, "philosopher"); //cleanup?
@@ -67,4 +70,18 @@ static bool	launch_philosopher_threads(t_program_data **program_data_reference)
 		i++;
 	}
 	return (true);
+}
+
+static void set_last_meal_to_start_time(t_program_data *program_data)
+{
+	int i;
+
+	i = 0;
+	while (i < program_data->num_philos)
+	{
+		pthread_mutex_lock(&(program_data->philos[i].last_meal_mutex));
+		program_data->philos[i].last_meal = program_data->start_time;
+		pthread_mutex_unlock(&(program_data->philos[i].last_meal_mutex));
+		i++;
+	}
 }

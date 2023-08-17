@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:20:28 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/16 17:41:01 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/17 16:42:40 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,34 +58,16 @@ bool	philo_eat(t_philo *philo)
 
 bool	grab_two_forks(t_philo *philo, pthread_mutex_t *left_fork, pthread_mutex_t *right_fork)
 {
-	if(philo->id % 2)
-	{
-		pthread_mutex_lock(left_fork);
-		print_philo_state(philo, MSG_FORK, false);
-		pthread_mutex_lock(right_fork); //error ?
-		print_philo_state(philo, MSG_FORK, false);
-	}
-	else
-	{
-		pthread_mutex_lock(right_fork); //error ?
-		print_philo_state(philo, MSG_FORK, false);
-		pthread_mutex_lock(left_fork);
-		print_philo_state(philo, MSG_FORK, false);
-	}
+	pthread_mutex_lock(right_fork); //error ?
+	print_philo_state(philo, MSG_FORK, false);
+	pthread_mutex_lock(left_fork);
+	print_philo_state(philo, MSG_FORK, false);
 	return (true);
 }
 
 bool	put_back_two_forks(t_philo *philo, pthread_mutex_t *left_fork, pthread_mutex_t *right_fork)
 {
-	if(philo->id % 2)
-	{
-		pthread_mutex_unlock(left_fork);
-		pthread_mutex_unlock(right_fork); //error ?
-	}
-	else
-	{
-		pthread_mutex_unlock(right_fork); //error ?
-		pthread_mutex_unlock(left_fork);
-	}
+	pthread_mutex_unlock(right_fork); //error ?
+	pthread_mutex_unlock(left_fork);
 	return (true);
 }
