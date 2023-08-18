@@ -66,7 +66,7 @@ static bool	launch_philosopher_threads(t_program_data **program_data_reference)
 			print_error(ERR_PTHREAD_CREATE, "philosopher"); //cleanup?
 			return (false);
 		}
-		pthread_detach(program_data->philos[i].thread);
+		// pthread_detach(program_data->philos[i].thread);
 		i++;
 	}
 	return (true);
@@ -84,4 +84,17 @@ static void set_last_meal_to_start_time(t_program_data *program_data)
 		pthread_mutex_unlock(&(program_data->philos[i].last_meal_mutex));
 		i++;
 	}
+}
+
+void	destroy_philosophers(t_program_data *program_data)
+{
+	int i;
+
+	i = 0;
+	while (i < program_data->num_philos)
+	{
+		pthread_mutex_destroy(&(program_data->philos[i].last_meal_mutex));
+		i++;
+	}
+	free(program_data->philos);
 }

@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/17 16:34:48 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/18 15:49:38 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	print_error(char *type, char *message);
 
 // create_destory_mutexes.c
 bool	create_mutexes(t_program_data *program_data);
+void	destroy_mutexes(t_program_data *program_data);
 
 // create_destroy_forks.c
 bool	create_forks(t_program_data *program_data);
@@ -41,6 +42,7 @@ void	destroy_forks(pthread_mutex_t *forks, int num_philos);
 
 // prepare_philosopher_data.c
 bool	start_simulation(t_program_data **program_data_reference);
+void	destroy_philosophers(t_program_data *program_data);
 
 // philosopher_life.c
 void	*philosopher_life(void *philo);

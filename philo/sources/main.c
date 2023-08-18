@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:22:09 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/16 20:11:40 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/18 17:05:52 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ void	print_philo_numbers(t_program_data *program_data)
 	printf("time_to_sleep:		%d\n", program_data->time_to_sleep);
 	printf("num_times_to_eat:	%d\n", program_data->meals_to_eat);
 	printf("\n");
+}
+
+void	wait_for_philosopher_threads_to_finish(t_program_data *program_data)
+{
+	int	i;
+
+	i = 0;
+	while (i < program_data->num_philos)
+	{
+		pthread_join(program_data->philos[i].thread, NULL);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -48,8 +60,12 @@ int	main(int argc, char **argv)
 
 	// waiting_in_ms((program_data->time_to_die / 2) + (program_data->time_to_die / 2), 0);
 	is_end_of_simulation(program_data);
+	
+	wait_for_philosopher_threads_to_finish(program_data);
+	destroy_mutexes(program_data);
+	destroy_philosophers(program_data);
+	free(program_data);
+	//free memory and destroy mutexes
 	//clear up and wait for all to finish
-	while (1)
-		;
 	return (0);
 }
