@@ -6,7 +6,7 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 21:26:40 by cmenke            #+#    #+#              #
-#    Updated: 2023/08/18 18:19:04 by cmenke           ###   ########.fr        #
+#    Updated: 2023/08/18 22:35:05 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ HEADER := $(addprefix includes/,philo.h \
 #CFLAGS := -Wall -Werror -Wextra -I includes
 
 #Development flags
-CFLAGS := -Wall -Wextra -I includes -O3 -g -O0 -fsanitize=thread #-fsanitize=address 
+CFLAGS := -Wall -Wextra -I includes -O3 -g -O0 #-fsanitize=thread #-fsanitize=address 
 
 CC := cc
 

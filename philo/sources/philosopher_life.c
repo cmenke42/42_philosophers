@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 21:08:30 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/18 17:20:29 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/18 22:23:02 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ void	*philosopher_life(void *philo)
 	philo_data = (t_philo *)philo;
 	pthread_mutex_lock(&philo_data->program_data->start_simulation_mutex);
 	pthread_mutex_unlock(&philo_data->program_data->start_simulation_mutex);
-	// if (philo_data->id % 2 == 0)
-	// 	waiting_in_ms(philo_data->program_data->time_to_eat / 2, 0);
-	print_philo_state(philo_data, "hello", false);
+	if (philo_data->id % 2 == 0)
+		waiting_in_ms(philo_data->program_data->time_to_eat / 2, 0);
+	// print_philo_state(philo_data, "hello", false);
 	while (1) //mutex!
 	{
 		if (is_end(philo_data->program_data))
 			return (NULL);
-		// philo_eat(philo_data);
-		// if (is_end(philo_data->program_data))
-		// 	return (NULL);
-		// philo_sleep(philo_data);
-		// if (is_end(philo_data->program_data))
-		// 	return (NULL);
-		// print_philo_state(philo_data, MSG_THINK, false);
+		philo_eat(philo_data);
+		if (is_end(philo_data->program_data))
+			return (NULL);
+		philo_sleep(philo_data);
+		if (is_end(philo_data->program_data))
+			return (NULL);
+		print_philo_state(philo_data, MSG_THINK, false);
 	}
 	return (NULL);
 }

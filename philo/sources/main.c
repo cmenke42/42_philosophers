@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:22:09 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/18 17:05:52 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/18 22:40:59 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,25 @@ int	main(int argc, char **argv)
 		return (print_error(TYPE_ERROR, ERR_MALLOC), 1);
 	memset((void *)program_data, 0, sizeof(t_program_data));
 
-	if (!validate_and_get_input(argc, argv, program_data))
+	if (!validate_and_get_input(argc, argv, program_data)) //make a clean function
 		return (1);
-
-	if (program_data->meals_to_eat == 0)
+	if (program_data->num_philos == 1) //make an extra thread for 1 philo
+	{
+		printf("0 1 has taken a fork\n");
+		waiting_in_ms(program_data->time_to_die, 0);
+		printf("%d 1 died\n", program_data->time_to_die);
+		return (0);
+	}
+	if (program_data->meals_to_eat == 0) //make a clean function
 		return (0);
 
-	if (!create_mutexes(program_data))
+	if (!create_mutexes(program_data)) //make a clean function
 		return (1);
 
 		
 	print_philo_numbers(program_data);
 
-	if (!start_simulation(&program_data))
+	if (!start_simulation(&program_data))//make a clean function
 		return (1);
 
 	// waiting_in_ms((program_data->time_to_die / 2) + (program_data->time_to_die / 2), 0);

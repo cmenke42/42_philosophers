@@ -6,14 +6,14 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:20:28 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/18 17:15:03 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/18 22:34:30 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 bool	grab_two_forks(t_philo *philo, pthread_mutex_t *left_fork, pthread_mutex_t *right_fork);
-bool	put_back_two_forks(pthread_mutex_t *left_fork, pthread_mutex_t *right_fork);
+bool	put_back_two_forks(t_philo *philo, pthread_mutex_t *left_fork, pthread_mutex_t *right_fork);
 
 
 bool	philo_eat(t_philo *philo)
@@ -39,7 +39,7 @@ bool	philo_eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 	print_philo_state(philo, MSG_EAT, false);
 	waiting_in_ms(philo->program_data->time_to_eat, last_meal);
-	put_back_two_forks(philo->left_fork, philo->right_fork);
+	put_back_two_forks(philo, philo->left_fork, philo->right_fork);
 	philo->meals_eaten++; //mutex??
 	if (philo->meals_eaten == philo->program_data->meals_to_eat)
 	{
@@ -58,6 +58,14 @@ bool	philo_eat(t_philo *philo)
 
 bool	grab_two_forks(t_philo *philo, pthread_mutex_t *left_fork, pthread_mutex_t *right_fork)
 {
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(left_fork);
+		print_philo_state(philo, MSG_FORK, false);
+		pthread_mutex_lock(right_fork);
+		print_philo_state(philo, MSG_FORK, false);
+		return (true);
+	}
 	pthread_mutex_lock(right_fork); //error ?
 	print_philo_state(philo, MSG_FORK, false);
 	pthread_mutex_lock(left_fork);
@@ -65,9 +73,15 @@ bool	grab_two_forks(t_philo *philo, pthread_mutex_t *left_fork, pthread_mutex_t 
 	return (true);
 }
 
-bool	put_back_two_forks(pthread_mutex_t *left_fork, pthread_mutex_t *right_fork)
+bool	put_back_two_forks(t_philo *philo, pthread_mutex_t *left_fork, pthread_mutex_t *right_fork)
 {
-	pthread_mutex_unlock(right_fork); //error ?
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_unlock(right_fork);
+		pthread_mutex_unlock(left_fork);
+		return (true);
+	}
 	pthread_mutex_unlock(left_fork);
+	pthread_mutex_unlock(right_fork); //error ?
 	return (true);
 }
