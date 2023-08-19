@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 02:05:14 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 03:40:41 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 20:48:55 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void	set_last_meal_to_start_time(t_program_data *program_data);
 bool	start_simulation(t_program_data **program_data_reference)
 {
 	if (!prepare_philosopher_data(program_data_reference))
+	{
+		destroy_mutexes(*program_data_reference);
 		return (false);
+	}
 	pthread_mutex_lock(&(*program_data_reference)->start_simulation_mutex);
 	if (!launch_philosopher_threads(program_data_reference))
 		return (false);

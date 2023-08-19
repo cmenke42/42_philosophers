@@ -6,7 +6,7 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 21:26:40 by cmenke            #+#    #+#              #
-#    Updated: 2023/08/19 04:55:49 by cmenke           ###   ########.fr        #
+#    Updated: 2023/08/19 20:51:53 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,13 @@ HEADER := $(addprefix includes/,philo.h \
 								colors.h)
 
 #Production flags
-#CFLAGS := -Wall -Werror -Wextra -I includes
-
+CFLAGS := -Wall -Werror -Wextra -I includes
+LDFLAGS := -pthread
 #Development flags
-CFLAGS := -Wall -Wextra -I includes -O3 -g -O0 -fsanitize=thread #-fsanitize=address 
+# CFLAGS += -g -O0
+# CFLAGS += -fsanitize=thread
+# CFLAGS += -fsanitize=address
+
 
 CC := cc
 
@@ -48,10 +51,10 @@ RM := rm -f
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+	${CC} ${CFLAGS} ${LDFLAGS} ${OBJS} -o ${NAME}
 
 ${OBJDIR}/%.o: ${SRCDIR}/%.c ${HEADER} | ${OBJDIR}
-	${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} ${LDFLAGS} -c $< -o $@
 
 ${OBJDIR}:
 	mkdir -p ${OBJDIR}

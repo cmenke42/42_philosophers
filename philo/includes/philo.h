@@ -6,14 +6,13 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 04:28:34 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 20:00:15 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,6 +20,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <limits.h>
+# include <pthread.h>
 
 # include "structs.h"
 # include "colors.h"

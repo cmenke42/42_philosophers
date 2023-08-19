@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 18:29:04 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 03:39:04 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 20:47:05 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ static void	ft_putstr_fd(char *s, int fd)
 
 	i = 0;
 	while (s[i] != '\0')
-		write(fd, &s[i++], 1);
+	{
+		if (write(fd, &s[i++], 1) == -1)
+		{
+			printf("Error writing on fd 2\n");
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:48:54 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 03:40:16 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 19:36:30 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	destroy_forks(t_program_data *program_data, int num_philos)
 		return ;
 	while (i < num_philos)
 	{
-		if (pthread_mutex_destroy(&(program_data->forks[i])))
-			print_error(ERR_MUTEX_DESTROY, "forks");
+		pthread_mutex_destroy(&(program_data->forks[i]));
 		i++;
 	}
 	free(program_data->forks);

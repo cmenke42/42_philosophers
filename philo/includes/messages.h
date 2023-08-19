@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 00:56:49 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 03:37:30 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 19:36:35 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define ERR_MUTEX_INIT "Mutex init failed"
 # define ERR_PTHREAD_CREATE "Pthread create failed"
 # define ERR_PTHREAD_DETACH "Pthread detach failed"
-# define ERR_MUTEX_DESTROY "Mutex destroy failed"
 
 //program error messages
 	//input

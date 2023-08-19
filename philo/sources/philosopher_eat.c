@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 20:20:28 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 04:56:09 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 19:37:28 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ bool	philo_eat(t_philo *philo)
 	last_meal = philo->last_meal;
 	pthread_mutex_unlock(&philo->last_meal_mutex);
 	print_philo_state(philo, MSG_EAT, false);
-	increment_meal_counter(philo);
 	waiting_in_ms(philo->program_data->time_to_eat, last_meal);
+	increment_meal_counter(philo);
 	put_back_forks(philo, philo->left_fork, philo->right_fork);
 	return (true);
 }
