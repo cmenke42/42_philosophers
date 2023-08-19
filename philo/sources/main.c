@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:22:09 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 03:53:44 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 04:15:15 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 		return (free(program_data), 1);
 	if (!start_simulation(&program_data))
 		return (free(program_data), 1);
-	is_end_of_simulation(program_data);
+	wait_for_simulation_end(program_data);
 	wait_for_philosophers(program_data, program_data->num_philos);
 	destroy_mutexes(program_data);
 	destroy_philosophers(program_data, program_data->num_philos);

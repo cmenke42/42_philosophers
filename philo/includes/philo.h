@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 03:40:41 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 04:28:34 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,18 @@ bool		start_simulation(t_program_data **program_data_reference);
 void		destroy_philosophers(t_program_data *program_data, int num_philos);
 
 // philosopher_life.c
-void		*philosopher_life(void *philo);
-void		waiting_in_ms(int time, long int last_meal_time);
+void		*philosopher_life(void *data_of_philo);
 bool		is_end(t_philo *philo);
 
-//get_time.c
-long int	get_time_in_ms(void);
+//time.c
+void		waiting_in_ms(int time, long int last_meal_time);
 long int	get_timestamp_in_ms(long int start_time);
+long int	get_time_in_ms(void);
 
 // philo_eat.c
 bool		philo_eat(t_philo *philo);
 
 //philosopher_end_of_simulation.c
-bool		is_end_of_simulation(t_program_data *program_data);
+bool		wait_for_simulation_end(t_program_data *program_data);
 
 #endif
