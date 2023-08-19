@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:49:59 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 01:54:30 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 03:36:51 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "philo.h"
 
-typedef struct s_program_data t_program_data;
-typedef struct s_philo t_philo;
+typedef struct s_program_data	t_program_data;
+typedef struct s_philo			t_philo;
 
 typedef struct s_program_data
 {

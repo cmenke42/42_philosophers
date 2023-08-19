@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 02:18:06 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 03:40:41 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,41 +26,42 @@
 # include "colors.h"
 # include "messages.h"
 
+// main.c
+void		wait_for_philosophers(t_program_data *program_data,
+				int num_philos);
+
 // validate_and_get_input.c
-bool	validate_and_get_input(int argc, char **argv, t_program_data *program_data);
+bool		validate_and_get_input(int argc, char **argv,
+				t_program_data *program_data);
 
 //print_error.c
-void	print_error(char *type, char *message);
+void		print_error(char *type, char *message);
 
 // create_destory_mutexes.c
-bool	create_mutexes(t_program_data *program_data);
-void	destroy_mutexes(t_program_data *program_data);
+bool		create_mutexes(t_program_data *program_data);
+void		destroy_mutexes(t_program_data *program_data);
 
 // create_destroy_forks.c
-bool	create_forks(t_program_data *program_data);
-void	destroy_forks(pthread_mutex_t *forks, int num_philos);
+bool		create_forks(t_program_data *program_data);
+void		destroy_forks(t_program_data *program_data, int num_philos);
 
 // prepare_philosopher_data.c
-bool	start_simulation(t_program_data **program_data_reference);
-void	destroy_philosophers(t_program_data *program_data, int num_philos);
+bool		start_simulation(t_program_data **program_data_reference);
+void		destroy_philosophers(t_program_data *program_data, int num_philos);
 
 // philosopher_life.c
-void	*philosopher_life(void *philo);
-void	waiting_in_ms(int time, long int last_meal_time);
-bool	is_end(t_philo *philo);
-
-
-//print_philo_state.c
-void	print_philo_state(t_philo *philo_data, char *message, bool is_dead);
+void		*philosopher_life(void *philo);
+void		waiting_in_ms(int time, long int last_meal_time);
+bool		is_end(t_philo *philo);
 
 //get_time.c
 long int	get_time_in_ms(void);
 long int	get_timestamp_in_ms(long int start_time);
 
 // philo_eat.c
-bool	philo_eat(t_philo *philo);
+bool		philo_eat(t_philo *philo);
 
 //philosopher_end_of_simulation.c
-bool	is_end_of_simulation(t_program_data *program_data);
+bool		is_end_of_simulation(t_program_data *program_data);
 
 #endif

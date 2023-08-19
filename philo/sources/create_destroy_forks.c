@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 15:48:54 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 01:56:14 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 03:40:16 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ bool	create_forks(t_program_data *program_data)
 	int	i;
 
 	i = 0;
-	program_data->forks = malloc(sizeof(pthread_mutex_t) * program_data->num_philos);
+	program_data->forks = malloc(sizeof(pthread_mutex_t)
+			* program_data->num_philos);
 	if (!program_data->forks)
 		return (print_error(ERR_MALLOC, "creating forks"), false);
-	memset((void *)program_data->forks, 0, sizeof(pthread_mutex_t) * program_data->num_philos);
+	memset((void *)program_data->forks, 0,
+		sizeof(pthread_mutex_t) * program_data->num_philos);
 	while (i < program_data->num_philos)
 	{
 		if (pthread_mutex_init(&(program_data->forks[i]), NULL))
 		{
 			print_error(ERR_MUTEX_INIT, "forks");
-			destroy_forks(program_data->forks, i);
+			destroy_forks(program_data, i);
 			return (false);
 		}
 		i++;
@@ -34,18 +36,19 @@ bool	create_forks(t_program_data *program_data)
 	return (true);
 }
 
-void	destroy_forks(pthread_mutex_t *forks, int num_philos)
+void	destroy_forks(t_program_data *program_data, int num_philos)
 {
 	int	i;
 
 	i = 0;
-	if (!forks)
+	if (!program_data->forks)
 		return ;
 	while (i < num_philos)
 	{
-		if (pthread_mutex_destroy(&(forks[i])))
+		if (pthread_mutex_destroy(&(program_data->forks[i])))
 			print_error(ERR_MUTEX_DESTROY, "forks");
 		i++;
 	}
-	free(forks);
+	free(program_data->forks);
+	program_data->forks = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 02:05:14 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 02:57:25 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 03:40:41 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static bool	prepare_philosopher_data(t_program_data **program_data_reference)
 		if (pthread_mutex_init(&(program_data->philos[i].last_meal_mutex),
 				NULL))
 			return (print_error(ERR_MUTEX_INIT, "last_meal_mutex"),
-			destroy_philosophers(program_data, i), false);
+				destroy_philosophers(program_data, i), false);
 		i++;
 	}
 	return (true);
@@ -74,7 +74,7 @@ static bool	launch_philosopher_threads(t_program_data **program_data_reference)
 			program_data->end_of_simulation = true;
 			pthread_mutex_unlock(&program_data->end_of_simulation_mutex);
 			pthread_mutex_unlock(&program_data->start_simulation_mutex);
-			wait_for_threads_to_finish(program_data, i);
+			wait_for_philosophers(program_data, i);
 			destroy_philosophers(program_data, i);
 			destroy_mutexes(program_data);
 			return (false);

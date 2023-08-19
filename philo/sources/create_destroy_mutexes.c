@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 18:03:52 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 01:55:02 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 03:11:25 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	create_mutexes(t_program_data *program_data)
 
 void	destroy_mutexes(t_program_data *program_data)
 {
-	destroy_forks(program_data->forks, program_data->num_philos);
+	destroy_forks(program_data, program_data->num_philos);
 	pthread_mutex_destroy(&(program_data->end_of_simulation_mutex));
 	pthread_mutex_destroy(&(program_data->num_philo_full_mutex));
 	pthread_mutex_destroy(&(program_data->start_simulation_mutex));

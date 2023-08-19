@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 00:56:49 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/13 20:48:41 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 03:37:30 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@
 # define HINT_USAGE "./philo number_of_philosophers time_to_die(ms) \
 time_to_eat(ms) time_to_sleep(ms) [number_of_times_each_philosopher_must_eat]"
 
-
 // print_error.c
 void	print_error(char *type, char *message);
 
-// print_philo_state.c
-// void	print_philo_state(t_philo *philo, char *message);
+//print_philo_state.c
+void	print_philo_state(t_philo *philo_data, char *message, bool is_dead);
 
 #endif
