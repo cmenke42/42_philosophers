@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 19:49:59 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/17 16:45:25 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 01:54:30 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_program_data
 	int				meals_to_eat;
 	long int		start_time;
 	pthread_mutex_t	start_simulation_mutex;
-	int				num_philo_finished_eating;
-	pthread_mutex_t	num_philo_finished_eating_mutex;
+	int				num_philo_full;
+	pthread_mutex_t	num_philo_full_mutex;
 	bool			end_of_simulation;
 	pthread_mutex_t	end_of_simulation_mutex;
 	pthread_mutex_t	*forks;

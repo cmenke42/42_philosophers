@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 23:59:08 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/18 15:49:38 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 02:18:06 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	destroy_forks(pthread_mutex_t *forks, int num_philos);
 
 // prepare_philosopher_data.c
 bool	start_simulation(t_program_data **program_data_reference);
-void	destroy_philosophers(t_program_data *program_data);
+void	destroy_philosophers(t_program_data *program_data, int num_philos);
 
 // philosopher_life.c
 void	*philosopher_life(void *philo);
 void	waiting_in_ms(int time, long int last_meal_time);
-bool	is_end(t_program_data *program_data);
+bool	is_end(t_philo *philo);
 
 
 //print_philo_state.c

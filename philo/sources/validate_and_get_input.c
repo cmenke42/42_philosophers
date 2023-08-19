@@ -6,24 +6,18 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 00:43:09 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/13 20:28:46 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 02:57:24 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// argv[1] = number_of_philosophers
-// argv[2] = time_to_die
-// argv[3] = time_to_eat
-// argv[4] = time_to_sleep
-// (argv[5] = number_of_times_each_philosopher_must_eat) - optional argument
-
-static bool	save_input_to_program_data(t_program_data *program_data, char **argv);
+static bool	store_input_in_struct(t_program_data *program_data, char **argv);
 static bool	get_number(char *str, int *exit_code);
 static int	ft_isdigit(int c);
 
-
-bool	validate_and_get_input(int argc, char **argv, t_program_data *program_data)
+bool	validate_and_get_input(int argc, char **argv,
+			t_program_data *program_data)
 {
 	if ((argc != 5 && argc <= 5) || (argc != 6 && argc > 6))
 	{
@@ -31,16 +25,16 @@ bool	validate_and_get_input(int argc, char **argv, t_program_data *program_data)
 		print_error(TYPE_HINT, HINT_USAGE);
 		return (false);
 	}
-	if (!save_input_to_program_data(program_data, argv))
+	if (!store_input_in_struct(program_data, argv))
 		return (false);
 	if (argc == 5)
 		program_data->meals_to_eat = -1;
 	if (program_data->num_philos < 1)
 		return (print_error(TYPE_ERROR, ERR_NUM_PHILOS), false);
 	return (true);
-}	
+}
 
-static bool	save_input_to_program_data(t_program_data *program_data, char **argv)
+static bool	store_input_in_struct(t_program_data *program_data, char **argv)
 {
 	if (!get_number(argv[1], &program_data->num_philos))
 		return (false);
