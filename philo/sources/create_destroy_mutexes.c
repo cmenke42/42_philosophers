@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 18:03:52 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 03:11:25 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/08/19 05:01:53 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,20 @@ bool	create_mutexes(t_program_data *program_data)
 {
 	if (pthread_mutex_init(&(program_data->end_of_simulation_mutex), NULL))
 		return (print_error(ERR_MUTEX_INIT, "end_of_simulation_mutex"), false);
-	else if (pthread_mutex_init(&(program_data->num_philo_full_mutex), NULL))
+	if (pthread_mutex_init(&(program_data->num_philo_full_mutex), NULL))
 	{
 		pthread_mutex_destroy(&(program_data->end_of_simulation_mutex));
 		return (print_error(ERR_MUTEX_INIT, "num_philo_full_mutex"), false);
 	}
-	else if (pthread_mutex_init(&(program_data->start_simulation_mutex), NULL))
+	if (pthread_mutex_init(&(program_data->start_simulation_mutex), NULL))
 	{
 		pthread_mutex_destroy(&(program_data->end_of_simulation_mutex));
 		pthread_mutex_destroy(&(program_data->num_philo_full_mutex));
 		return (print_error(ERR_MUTEX_INIT, "start_simulation_mutex"), false);
 	}
-	else if (!create_forks(program_data))
-		;
-	else
-		return (true);
-	destroy_mutexes(program_data);
-	return (false);
+	if (!create_forks(program_data))
+		return (destroy_mutexes(program_data), false);
+	return (true);
 }
 
 void	destroy_mutexes(t_program_data *program_data)
