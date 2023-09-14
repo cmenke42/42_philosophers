@@ -6,7 +6,7 @@
 /*   By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:32:45 by cmenke            #+#    #+#             */
-/*   Updated: 2023/08/19 04:28:26 by cmenke           ###   ########.fr       */
+/*   Updated: 2023/09/14 07:02:23 by cmenke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	waiting_in_ms(int time, long int last_meal_time)
 	else
 		start_time = last_meal_time;
 	while (get_time_in_ms() - start_time < time)
-		usleep(1000);
+		usleep(200);
 }
 
 long int	get_timestamp_in_ms(long int start_time)

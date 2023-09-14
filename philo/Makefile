@@ -6,7 +6,7 @@
 #    By: cmenke <cmenke@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 21:26:40 by cmenke            #+#    #+#              #
-#    Updated: 2023/08/19 20:51:53 by cmenke           ###   ########.fr        #
+#    Updated: 2023/08/21 17:40:42 by cmenke           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ LDFLAGS := -pthread
 # CFLAGS += -g -O0
 # CFLAGS += -fsanitize=thread
 # CFLAGS += -fsanitize=address
-
 
 CC := cc
 
